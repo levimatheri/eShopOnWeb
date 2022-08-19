@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Apim.DevOps.Toolkit</id>
+    <version>2.0.4</version>
+    <title>dotnet-apim</title>
+    <authors>Ehsan Mirsaeedi</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/mirsaeedi/dotnet-apim</projectUrl>
+    <description>dotnet-apim is a cross-platform dotnet tool which streamlines the CI/CD process of deploying APIs into Azure API Management.</description>
+    <releaseNotes>v2.0.4
+		- Support Service Fabric client certificate id</releaseNotes>
+    <tags>apim devops cicd toolkit azure</tags>
+    <packageTypes>
+      <packageType name="DotnetTool" />
+    </packageTypes>
+    <repository type="git" url="https://github.com/mirsaeedi/dotnet-apim" />
+  </metadata>
+</package>

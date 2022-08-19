@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop-api
+  template:
+    metadata:
+      labels:
+        app: eshop-api
+    spec:
+      containers:
+      - name: eshop-api
+        image: eshop-public-api
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshop-api
+spec:
+  type: ClusterIP
+  selector:
+    app: eshop-api
+  ports:
+  - port: 80
+    protocol: TCP
