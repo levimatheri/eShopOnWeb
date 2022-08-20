@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: eshop-ingress
+  name: eshop-ingress-api
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
   labels:
-    name: eshop-ingress
+    name: eshop-ingress-api
 spec:
   ingressClassName: nginx
   rules:
@@ -21,31 +21,17 @@ spec:
             name: eshop-api
             port: 
               number: 80
-      - pathType: Prefix
-        path: /web(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80
-      - pathType: Prefix
-        path: /(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80
----              
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: eshop-ingress-web-images
+  name: eshop-ingress-web
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /images/$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
   labels:
-    name: eshop-ingress-web-images
+    name: eshop-ingress-web
 spec:
   ingressClassName: nginx
   rules:
@@ -53,177 +39,9 @@ spec:
     http:
       paths:
       - pathType: Prefix
-        path: /images(/|$)(.*)
+        path: /(.*)
         backend:
           service:
             name: eshop-web
             port: 
-              number: 80     
----              
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: eshop-ingress-web-css
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /css/$2
-  labels:
-    name: eshop-ingress-web-css
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: demo.localdev.me
-    http:
-      paths:
-      - pathType: Prefix
-        path: /css(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80   
----              
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: eshop-ingress-web-js
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /js/$2
-  labels:
-    name: eshop-ingress-web-js
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: demo.localdev.me
-    http:
-      paths:
-      - pathType: Prefix
-        path: /js(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80      
----              
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: eshop-ingress-web-fonts
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /fonts/$2
-  labels:
-    name: eshop-ingress-web-fonts
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: demo.localdev.me
-    http:
-      paths:
-      - pathType: Prefix
-        path: /fonts(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80     
----              
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: eshop-ingress-web-identity
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /Identity/$2
-  labels:
-    name: eshop-ingress-web-identity
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: demo.localdev.me
-    http:
-      paths:
-      - pathType: Prefix
-        path: /Identity(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80  
----              
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: eshop-ingress-web-basket
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /Basket/$2
-  labels:
-    name: eshop-ingress-web-basket
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: demo.localdev.me
-    http:
-      paths:
-      - pathType: Prefix
-        path: /Basket(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80
----              
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: eshop-ingress-web-order
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /order/$2
-  labels:
-    name: eshop-ingress-web-order
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: demo.localdev.me
-    http:
-      paths:
-      - pathType: Prefix
-        path: /order(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80  
----              
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: eshop-ingress-web-manage
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /manage/$2
-  labels:
-    name: eshop-ingress-web-manage
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: demo.localdev.me
-    http:
-      paths:
-      - pathType: Prefix
-        path: /manage(/|$)(.*)
-        backend:
-          service:
-            name: eshop-web
-            port: 
-              number: 80                                                                                                                 
+              number: 80         

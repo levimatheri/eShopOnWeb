@@ -18,6 +18,9 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 80
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Kubernetes
 ---
 apiVersion: v1
 kind: Service

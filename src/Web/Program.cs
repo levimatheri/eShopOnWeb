@@ -21,6 +21,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.AddConsole();
 
+builder.Configuration.AddEnvironmentVariables();
+
 Microsoft.eShopWeb.Infrastructure.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
 
 builder.Services.AddCookieSettings();
@@ -161,6 +163,13 @@ else
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
+
+//Environment.SetEnvironmentVariable("ESHOP_WEB_PATH_BASE", "web");
+//var pathBase = Environment.GetEnvironmentVariable("ESHOP_WEB_PATH_BASE");
+
+//if (!string.IsNullOrWhiteSpace(pathBase)) {
+//    app.UsePathBase($"/{pathBase.TrimStart('/')}");
+//}
 
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();

@@ -14,10 +14,13 @@ spec:
     spec:
       containers:
       - name: eshop-api
-        image: eshop-public-api
+        image: eshop-api
         imagePullPolicy: Never
         ports:
         - containerPort: 80
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Kubernetes
 ---
 apiVersion: v1
 kind: Service
